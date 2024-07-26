@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Example Blog{% endblock %}</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        header {
+            background-color: #ffffff;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        nav a { 
+            text-decoration: none;
+            color: #333;
+            margin-right: 15px;
+        }
+        .post { 
+            background-color: #ffffff;
+            margin-bottom: 20px; 
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .tag { 
+            background-color: #e0e0e0; 
+            padding: 2px 5px; 
+            border-radius: 3px; 
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            text-decoration: none;
+            color: #333;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .search-form input[type="text"] {
+            padding: 5px;
+            width: 70%;
+        }
+        .search-form input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <a href="/">Example Blog</a>
+                <a href="/tag/technology">Technology</a>
+                <a href="/tag/personal">Personal</a>
+            </div>
+            <div>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <form class="search-form" action="/search" method="post">
+            <input type="text" name="query" placeholder="Search...">
+            <input type="submit" value="Search">
+        </form>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

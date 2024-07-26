@@ -1,0 +1,27 @@
+{% extends "base" %}
+{% block content %}
+    <h2>{% if tag %}Tag: {{ tag }}{% else %}Latest Posts{% endif %}</h2>
+    {% for post in posts %}
+        <div class="post">
+            <h3><a href="/post/{{ post.title | lower | replace(from=" ", to="-") }}">{{ post.title }}</a></h3>
+            <p>{{ post.date }}</p>
+            <p>{{ post.description }}</p>
+            <p>
+                {% for tag in post.tags %}
+                    <a href="/tag/{{ tag }}" class="tag">{{ tag }}</a>
+                {% endfor %}
+            </p>
+        </div>
+    {% endfor %}
+    <div class="pagination">
+        {% if current_page > 1 %}
+            <a href="/?page={{ current_page - 1 }}{% if query %}&query={{ query }}{% endif %}">Previous Page</a>
+        {% endif %}
+        {% for i in range(end=total_pages) %}
+            <a href="/?page={{ i + 1 }}{% if query %}&query={{ query }}{% endif %}">{{ i + 1 }}</a>
+        {% endfor %}
+        {% if current_page < total_pages %}
+            <a href="/?page={{ current_page + 1 }}{% if query %}&query={{ query }}{% endif %}">Next Page</a>
+        {% endif %}
+    </div>
+{% endblock %}

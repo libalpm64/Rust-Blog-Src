@@ -1,0 +1,14 @@
+{% extends "base" %}
+{% block title %}{{ post.title }} - Example Blog{% endblock %}
+{% block content %}
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.date }}</p>
+        {{ post.content | safe }}
+        <p>
+            {% for tag in post.tags %}
+                <a href="/tag/{{ tag }}" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}
